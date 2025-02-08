@@ -2,7 +2,7 @@ import SwiftUI
 import ParaSwift
 
 @main
-struct exampleApp: App {
+struct ExampleApp: App {
     @StateObject private var paraManager: ParaManager
     @StateObject private var paraEvmSigner: ParaEvmSigner
     @StateObject private var appRootManager = AppRootManager()

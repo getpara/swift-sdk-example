@@ -76,7 +76,7 @@ struct EVMWalletView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Wallet Address: \(selectedWallet.address!)")
+            Text("Wallet Address: \(selectedWallet.address) ?? no wallet found")
                     .font(.body)
                     .padding(.horizontal)
                 
@@ -215,5 +215,26 @@ struct EVMWalletView: View {
                 try! await paraEvmSigner.selectWallet(walletId: selectedWallet.id)
             }
         }
+    }
+}
+
+#Preview {
+    let mockParaManager = ParaManager(environment: .sandbox, apiKey: "preview-key")
+    let mockWallet = Wallet(
+        id: "preview-wallet-id",
+        signer: "mock-signer",
+        address: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        publicKey: "mock-public-key"
+    )
+    
+    NavigationStack {
+        EVMWalletView(selectedWallet: mockWallet)
+            .environmentObject(mockParaManager)
+            .environmentObject(try! ParaEvmSigner(
+                paraManager: mockParaManager,
+                rpcUrl: "https://sepolia.infura.io/v3/961364684c7346c080994baab1469ea8",
+                walletId: mockWallet.id
+            ))
+            .environmentObject(AppRootManager())
     }
 }

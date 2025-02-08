@@ -14,17 +14,17 @@ extension Bundle {
         guard let url = self.url(forResource: file, withExtension: nil) else {
             fatalError("Failed to locate \(file) in bundle.")
         }
-
+        
         guard let data = try? Data(contentsOf: url) else {
             fatalError("Failed to load \(file) from bundle.")
         }
-
+        
         let decoder = JSONDecoder()
-
+        
         guard let loaded = try? decoder.decode(T.self, from: data) else {
             fatalError("Failed to decode \(file) from bundle.")
         }
-
+        
         return loaded
     }
 }
@@ -60,7 +60,7 @@ func applyPatternOnNumbers(_ stringvar: inout String, pattern: String, replaceme
 struct PhoneAuthView: View {
     @EnvironmentObject var paraManager: ParaManager
     @EnvironmentObject var appRootManager: AppRootManager
-
+    
     @State private var phoneNumber = ""
     @State private var countryCode = "+1"
     @State private var countryFlag = "🇺🇸"
@@ -78,12 +78,12 @@ struct PhoneAuthView: View {
     private var countries: [CPData] = Bundle.main.decode("CountryNumbers.json")
     
     var filteredCountries: [CPData] {
-            if searchCountry.isEmpty {
-                return countries
-            } else {
-                return countries.filter { $0.name.localizedCaseInsensitiveContains(searchCountry)}
-            }
+        if searchCountry.isEmpty {
+            return countries
+        } else {
+            return countries.filter { $0.name.localizedCaseInsensitiveContains(searchCountry)}
         }
+    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -195,7 +195,7 @@ struct PhoneAuthView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
-
+            
             
             Spacer()
             
@@ -206,5 +206,9 @@ struct PhoneAuthView: View {
 }
 
 #Preview {
-    PhoneAuthView()
+    NavigationStack {
+        PhoneAuthView()
+            .environmentObject(ParaManager(environment: .sandbox, apiKey: "preview-key"))
+            .environmentObject(AppRootManager())
+    }
 }
