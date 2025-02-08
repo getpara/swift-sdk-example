@@ -26,12 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8C95CF282D1732E400BF9103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E8315DD72D5548F100FFF8C8 /* WalletsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsView.swift; sourceTree = "<group>"; };
 		E8315DD92D55717300FFF8C8 /* SolanaWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaWalletView.swift; sourceTree = "<group>"; };
 		E8315DDB2D55717F00FFF8C8 /* CosmosWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosWalletView.swift; sourceTree = "<group>"; };
-		E84DDF9E2D56D308007C6E39 /* EnvDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvDebug.xcconfig; sourceTree = "<group>"; };
-		E84DDFA52D56D411007C6E39 /* EnvDebug.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text; path = EnvDebug.xcconfig.example; sourceTree = "<group>"; };
 		E86A473E2D0CA0A400546CC2 /* EmailAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthView.swift; sourceTree = "<group>"; };
 		E86A47402D0CA62F00546CC2 /* AppRootManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootManager.swift; sourceTree = "<group>"; };
 		E86A475A2D1F13CB00546CC2 /* PhoneAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthView.swift; sourceTree = "<group>"; };
@@ -66,8 +63,6 @@
 				E8F93B2A2C21EBED006AA3F6 /* example */,
 				E8F93B292C21EBED006AA3F6 /* Products */,
 				E8F93B3A2C21EC8C006AA3F6 /* Frameworks */,
-				E84DDF9E2D56D308007C6E39 /* EnvDebug.xcconfig */,
-				E84DDFA52D56D411007C6E39 /* EnvDebug.xcconfig.example */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,7 +77,6 @@
 		E8F93B2A2C21EBED006AA3F6 /* example */ = {
 			isa = PBXGroup;
 			children = (
-				8C95CF282D1732E400BF9103 /* Info.plist */,
 				E86A47402D0CA62F00546CC2 /* AppRootManager.swift */,
 				E8F93B432C21ED67006AA3F6 /* example.entitlements */,
 				E8F93B2B2C21EBED006AA3F6 /* exampleApp.swift */,
@@ -346,7 +340,6 @@
 				DEVELOPMENT_TEAM = FF9U73RS48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = example/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -383,7 +376,6 @@
 				DEVELOPMENT_TEAM = FF9U73RS48;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = example/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
