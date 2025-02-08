@@ -99,7 +99,7 @@
 		E8F93B1F2C21EBED006AA3F6 = {
 			isa = PBXGroup;
 			children = (
-				E8F93B2A2C21EBED006AA3F6 /* Example */,
+				E8F93B2A2C21EBED006AA3F6 /* example */,
 				E8F93B292C21EBED006AA3F6 /* Products */,
 				E8F93B3A2C21EC8C006AA3F6 /* Frameworks */,
 			);
@@ -113,7 +113,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8F93B2A2C21EBED006AA3F6 /* Example */ = {
+		E8F93B2A2C21EBED006AA3F6 /* example */ = {
 			isa = PBXGroup;
 			children = (
 				8FA007802D56ED9D009EF0C3 /* Managers */,
@@ -125,7 +125,7 @@
 				E8F93B312C21EBEE006AA3F6 /* Preview Content */,
 				8FA0077F2D56ECFB009EF0C3 /* Resources */,
 			);
-			path = Example;
+			path = example;
 			sourceTree = "<group>";
 		};
 		E8F93B312C21EBEE006AA3F6 /* Preview Content */ = {
@@ -182,7 +182,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E8F93B232C21EBED006AA3F6 /* Build configuration list for PBXProject "Example" */;
+			buildConfigurationList = E8F93B232C21EBED006AA3F6 /* Build configuration list for PBXProject "example" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -435,7 +435,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E8F93B232C21EBED006AA3F6 /* Build configuration list for PBXProject "Example" */ = {
+		E8F93B232C21EBED006AA3F6 /* Build configuration list for PBXProject "example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8F93B342C21EBEE006AA3F6 /* Debug */,

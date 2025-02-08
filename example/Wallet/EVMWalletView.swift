@@ -76,7 +76,7 @@ struct EVMWalletView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Wallet Address: \(selectedWallet.address) ?? no wallet found")
+            Text("Wallet Address: \(String(describing: selectedWallet.address)) ?? no wallet found")
                     .font(.body)
                     .padding(.horizontal)
                 
