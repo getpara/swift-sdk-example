@@ -67,3 +67,9 @@ struct WalletsView: View {
         }
     }
 }
+
+#Preview {
+    let mockParaManager = ParaManager(environment: .sandbox, apiKey: "preview-key")
+    WalletsView()
+        .environmentObject(mockParaManager)
+}

@@ -1,11 +1,12 @@
 import SwiftUI
 import ParaSwift
 
-struct VerifyEmailView: View {
+struct VerifyPhoneView: View {
     @EnvironmentObject var paraManager: ParaManager
     @EnvironmentObject var appRootManager: AppRootManager
     
-    let email: String
+    let phoneNumber: String
+    let countryCode: String
     
     @State private var code = ""
     @State private var isLoading = false
@@ -16,7 +17,7 @@ struct VerifyEmailView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("A verification code was sent to your email. Enter it below to verify.")
+            Text("A verification code was sent to your phone number. Enter it below to verify.")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -53,9 +54,9 @@ struct VerifyEmailView: View {
                 loadingStateText = "Verifying..."
                 Task {
                     do {
-                        let biometricsId = try await paraManager.verify(verificationCode: code)
+                        let biometricsId = try await paraManager.verifyByPhone(verificationCode: code)
                         loadingStateText = "Generating Passkey..."
-                        try await paraManager.generatePasskey(identifier: email, biometricsId: biometricsId, authorizationController: authorizationController)
+                        try await paraManager.generatePasskey(identifier: "\(countryCode)\(phoneNumber)", biometricsId: biometricsId, authorizationController: authorizationController)
                         loadingStateText = "Creating Wallet..."
                         try await paraManager.createWallet(type: .evm, skipDistributable: false)
                         isLoading = false
@@ -82,7 +83,15 @@ struct VerifyEmailView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("Verify Email")
+        .navigationTitle("Verify Phone")
+    }
+}
+
+#Preview {
+    NavigationStack {
+        VerifyPhoneView(phoneNumber: "1234567890", countryCode: "+1")
+            .environmentObject(ParaManager(environment: .sandbox, apiKey: "preview-key"))
+            .environmentObject(AppRootManager())
     }
 }
 

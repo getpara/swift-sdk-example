@@ -4,7 +4,7 @@ import ParaSwift
 struct EmailAuthView: View {
     @EnvironmentObject var paraManager: ParaManager
     @EnvironmentObject var appRootManager: AppRootManager
-
+    
     @State private var email = ""
     @State private var shouldNavigateToVerifyEmail = false
     
@@ -93,13 +93,21 @@ struct EmailAuthView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
-
+            
             
             Spacer()
             
         }
         .padding()
         .navigationTitle("Email + Passkey")
+    }
+}
+
+#Preview {
+    NavigationStack {
+        EmailAuthView()
+            .environmentObject(ParaManager(environment: .sandbox, apiKey: "preview-key"))
+            .environmentObject(AppRootManager())
     }
 }
 

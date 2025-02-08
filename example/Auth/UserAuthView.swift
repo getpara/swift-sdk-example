@@ -53,3 +53,8 @@ struct AuthTypeView: View {
         }
     }
 }
+
+#Preview {
+    UserAuthView()
+        .environmentObject(ParaManager(environment: .sandbox, apiKey: "preview-key"))
+}
