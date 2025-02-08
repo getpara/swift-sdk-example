@@ -4,10 +4,27 @@ A simple example app demonstrating Para Swift SDK integration. For detailed setu
 
 ## Quick Start
 
-1. Set required environment variables in Xcode (Scheme > Edit Scheme > Arguments > Environment Variables):
+1. Set required environment variables in Xcode:
+   1. Open your scheme settings (Product > Scheme > Edit Scheme or ⌘<)
+   2. Select "Run" in the left sidebar
+   3. Select the "Arguments" tab
+   4. Under "Environment Variables", click "+" to add each variable:
+
+Required variables:
 ```
-PARA_ENVIRONMENT=beta    # Options: "dev", "sandbox", "beta", "prod"
-PARA_API_KEY=your_api_key_here
+PARA_API_KEY=your_api_key_here    # Your Para API key
+PARA_ENVIRONMENT=beta             # Options: "dev", "sandbox", "beta", "prod"
+```
+
+Optional variables:
+```
+PARA_RPC_URL                     # Custom RPC URL for EVM operations (defaults to Sepolia testnet)
+```
+
+Development-only variables (when PARA_ENVIRONMENT=dev):
+```
+PARA_DEV_RELYING_PARTY_ID        # Custom relying party ID for dev environment
+PARA_DEV_JS_BRIDGE_URL           # Custom JS bridge URL for dev environment
 ```
 
 2. Open `example.xcodeproj` and run the app

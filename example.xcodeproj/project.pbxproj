@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8FA007832D57EB0D009EF0C3 /* ParaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA007812D57EB0D009EF0C3 /* ParaConfig.swift */; };
 		E8315DD82D5548F100FFF8C8 /* WalletsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8315DD72D5548F100FFF8C8 /* WalletsView.swift */; };
 		E8315DDA2D55717300FFF8C8 /* SolanaWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8315DD92D55717300FFF8C8 /* SolanaWalletView.swift */; };
 		E8315DDC2D55717F00FFF8C8 /* CosmosWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8315DDB2D55717F00FFF8C8 /* CosmosWalletView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8FA007812D57EB0D009EF0C3 /* ParaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParaConfig.swift; sourceTree = "<group>"; };
 		E8315DD72D5548F100FFF8C8 /* WalletsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsView.swift; sourceTree = "<group>"; };
 		E8315DD92D55717300FFF8C8 /* SolanaWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolanaWalletView.swift; sourceTree = "<group>"; };
 		E8315DDB2D55717F00FFF8C8 /* CosmosWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosWalletView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		8FA007822D57EB0D009EF0C3 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				8FA007812D57EB0D009EF0C3 /* ParaConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		E8F93B1F2C21EBED006AA3F6 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +126,7 @@
 		E8F93B2A2C21EBED006AA3F6 /* example */ = {
 			isa = PBXGroup;
 			children = (
+				8FA007822D57EB0D009EF0C3 /* Config */,
 				8FA007802D56ED9D009EF0C3 /* Managers */,
 				E8F93B432C21ED67006AA3F6 /* example.entitlements */,
 				E8F93B2B2C21EBED006AA3F6 /* ExampleApp.swift */,
@@ -231,6 +242,7 @@
 				E8F93B2C2C21EBED006AA3F6 /* ExampleApp.swift in Sources */,
 				E8F93B3E2C21ECFB006AA3F6 /* UserAuthView.swift in Sources */,
 				E86A475B2D1F13CB00546CC2 /* PhoneAuthView.swift in Sources */,
+				8FA007832D57EB0D009EF0C3 /* ParaConfig.swift in Sources */,
 				E86A47412D0CA63700546CC2 /* AppRootManager.swift in Sources */,
 				E8315DD82D5548F100FFF8C8 /* WalletsView.swift in Sources */,
 			);
