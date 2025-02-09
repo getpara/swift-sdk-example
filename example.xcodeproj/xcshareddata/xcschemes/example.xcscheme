@@ -59,7 +59,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "PARA_ENVIRONMENT"
-            value = "sandbox"
+            value = "beta"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
