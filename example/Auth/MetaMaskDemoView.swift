@@ -28,11 +28,15 @@ struct MetaMaskDemoView: View {
                 Task { await signMessage() }
             }
             .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(.orange)
             
             Button("Send Transaction") {
                 Task { await sendTransaction() }
             }
             .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(.orange)
         }
         .padding()
         .navigationTitle("MetaMask Wallet")
