@@ -31,6 +31,16 @@ struct UserAuthView: View {
                         )
                     }
                 }
+                
+                Section {
+                    NavigationLink(destination: OAuthView()) {
+                        AuthTypeView(
+                            image: Image(systemName: "phone"),
+                            title: "OAuth + Passkey",
+                            description: "Use different OAuth providers to create or sign in with a passkey"
+                        )
+                    }
+                }
             }
             .navigationTitle("Authentication")
             .listStyle(.insetGrouped)
