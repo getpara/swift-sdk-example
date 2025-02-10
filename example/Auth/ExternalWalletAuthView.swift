@@ -16,27 +16,28 @@ struct ExternalWalletAuthView: View {
     @State private var isConnecting = false
     @State private var error: Error?
     @State private var showError = false
+    @State private var showMetaMask = false
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Connect with External Wallet")
-                .font(.title2)
-                .fontWeight(.bold)
-            
             Button(action: connectMetaMask) {
                 HStack {
-                    Image(systemName: "link.circle.fill")
-                        .font(.title2)
+                    Image(.metamask)
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                    
                     Text("Connect MetaMask")
                         .fontWeight(.semibold)
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.blue)
+                .background(Color.orange)
                 .foregroundColor(.white)
                 .cornerRadius(12)
             }
             .disabled(isConnecting)
+            
+            Spacer()
             
             if isConnecting {
                 ProgressView()
@@ -49,6 +50,10 @@ struct ExternalWalletAuthView: View {
         } message: {
             Text(error?.localizedDescription ?? "Unknown error occurred")
         }
+        .navigationDestination(isPresented: $showMetaMask) {
+            MetaMaskDemoView()
+        }
+        .navigationTitle("External Wallet")
     }
     
     private func connectMetaMask() {
@@ -57,11 +62,7 @@ struct ExternalWalletAuthView: View {
         Task {
             do {
                 try await metaMaskConnector.connect()
-                // On successful connection, MetaMask will handle the external wallet login
-                // and the ParaManager's sessionState will be updated
-                if paraManager.sessionState == .activeLoggedIn {
-                    appRootManager.currentRoot = .home
-                }
+                showMetaMask = true
             } catch {
                 self.error = error
                 self.showError = true
