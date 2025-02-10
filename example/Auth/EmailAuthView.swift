@@ -49,10 +49,9 @@ struct EmailAuthView: View {
                     do {
                         let userExists = try await paraManager.checkIfUserExists(email: email)
                         if userExists {
-                            // User already exists, let them proceed to login (or show a message)
-                            // For now, we just show an error encouraging them to log in instead.
-                            errorMessage = "User already exists. Please log in with passkey."
                             isLoading = false
+                            try await paraManager.login(authorizationController: authorizationController, authInfo: EmailAuthInfo(email: email))
+                            appRootManager.currentRoot = .home
                         } else {
                             try await paraManager.createUser(email: email)
                             isLoading = false
@@ -84,8 +83,8 @@ struct EmailAuthView: View {
             }.padding(.vertical)
             
             Button {
-                Task.init {
-                    try await paraManager.login(authorizationController: authorizationController)
+                Task {
+                    try await paraManager.login(authorizationController: authorizationController, authInfo: nil)
                     appRootManager.currentRoot = .home
                 }
             } label: {
