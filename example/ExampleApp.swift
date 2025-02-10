@@ -4,7 +4,7 @@ import os
 
 @main
 struct ExampleApp: App {
-    private let logger = Logger(subsystem: "com.usecapsule.example.swiftt", category: "ExampleApp")
+    private let logger = Logger(subsystem: "com.usecapsule.example.swift", category: "ExampleApp")
     @StateObject private var paraManager: ParaManager
     @StateObject private var paraEvmSigner: ParaEvmSigner
     @StateObject private var appRootManager = AppRootManager()

@@ -7,7 +7,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.usecapsule.example.swiftt</string>
+				<string>com.usecapsule.example.swift</string>
 			</array>
 		</dict>
 	</array>
