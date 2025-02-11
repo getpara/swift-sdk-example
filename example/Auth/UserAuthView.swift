@@ -35,7 +35,7 @@ struct UserAuthView: View {
                 Section {
                     NavigationLink(destination: OAuthView()) {
                         AuthTypeView(
-                            image: Image(systemName: "phone"),
+                            image: Image(systemName: "xmark.triangle.circle.square"),
                             title: "OAuth + Passkey",
                             description: "Use different OAuth providers to create or sign in with a passkey"
                         )
