@@ -18,9 +18,9 @@ struct OAuthView: View {
     @State private var email = ""
     @State private var shouldNavigateToVerificationView = false
     
-    private func loginWithGoogle() {
+    private func login(provider: OAuthProvider) {
         Task {
-            let oAuthURL = try! await paraManager.getOAuthURL(provider: "GOOGLE", deeplinkUrl: "paraswiftexample")
+            let oAuthURL = try! await paraManager.getOAuthURL(provider: provider, deeplinkUrl: "paraswiftexample")
             if let url = URL(string: oAuthURL) {
                 openURL(url)
             }
@@ -32,7 +32,7 @@ struct OAuthView: View {
             self.email = email
             let userExists = try await paraManager.checkIfUserExists(email: email)
             if userExists {
-                try await paraManager.login(authorizationController: authorizationController, authInfo: nil)
+                try await paraManager.login(authorizationController: authorizationController, authInfo: EmailAuthInfo(email: email))
                 appRootManager.currentRoot = .home
             } else {
                 try await paraManager.createUser(email: email)
@@ -44,8 +44,14 @@ struct OAuthView: View {
     var body: some View {
         VStack {
             Button("Login with Google") {
-                loginWithGoogle()
-            }
+                login(provider: .google)
+            }.buttonStyle(.bordered)
+            Button("Login with Discord") {
+                login(provider: .discord)
+            }.buttonStyle(.bordered)
+            Button("Login with Apple") {
+                login(provider: .apple)
+            }.buttonStyle(.bordered)
         }
         .navigationDestination(isPresented: $shouldNavigateToVerificationView) {
             VerifyEmailView(email: email)
