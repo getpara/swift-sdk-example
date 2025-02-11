@@ -69,5 +69,6 @@ struct OAuthView: View {
 }
 
 #Preview {
-    OAuthView()
+    OAuthView().environmentObject(ParaManager(environment: .sandbox, apiKey: "preview-key"))
+        .environmentObject(AppRootManager())
 }
