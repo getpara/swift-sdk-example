@@ -53,7 +53,7 @@ struct ExampleApp: App {
             }
             .onOpenURL { url in
                 logger.debug("Received deep link URL: \(url.absoluteString)")
-                NotificationCenter.default.post(name: Notification.Name("MetaMaskDeepLink"), object: url)
+                metaMaskConnector.handleURL(url)
             }
         }
     }
