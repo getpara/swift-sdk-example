@@ -56,11 +56,12 @@ struct OAuthView: View {
                         .frame(width: 24, height: 24)
                     Text("Login with Google")
                 }
+                .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
             .tint(.primary)
-            
+            .foregroundStyle(.background)
             
             Button {
                 login(provider: .discord)
@@ -71,6 +72,7 @@ struct OAuthView: View {
                         .frame(width: 24, height: 20)
                     Text("Login with Discord")
                 }
+                .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
@@ -85,6 +87,7 @@ struct OAuthView: View {
                         .frame(width: 24, height: 24)
                     Text("Login with Apple")
                 }
+                .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
@@ -94,6 +97,7 @@ struct OAuthView: View {
                 .environmentObject(paraManager)
                 .environmentObject(appRootManager)
         }
+        .padding()
     }
 }
 
