@@ -56,23 +56,6 @@
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "PARA_ENVIRONMENT"
-            value = "sandbox"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "PARA_API_KEY"
-            value = "a30a351c206b90aa4107de8e016ad055"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "PARA_RPC_URL"
-            value = "https://sepolia.infura.io/v3/961364684c7346c080994baab1469ea8"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
