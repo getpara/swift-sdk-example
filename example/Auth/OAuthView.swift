@@ -19,6 +19,8 @@ struct OAuthView: View {
     
     @State private var email = ""
     @State private var shouldNavigateToVerificationView = false
+    @State private var error: Error?
+    @State private var showError = false
     
     private func login(provider: OAuthProvider) {
         Task {
@@ -26,7 +28,7 @@ struct OAuthView: View {
                 let email = try await paraManager.oAuthConnect(provider: provider, webAuthenticationSession: webAuthenticationSession)
                 handleLogin(email: email)
             } catch {
-                print("Something went wrong")
+                self.error = error
             }
         }
     }
@@ -55,6 +57,7 @@ struct OAuthView: View {
                         .resizable()
                         .frame(width: 24, height: 24)
                     Text("Login with Google")
+                        .fontWeight(.semibold)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -71,6 +74,7 @@ struct OAuthView: View {
                         .resizable()
                         .frame(width: 24, height: 20)
                     Text("Login with Discord")
+                        .fontWeight(.semibold)
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -86,11 +90,17 @@ struct OAuthView: View {
                         .resizable()
                         .frame(width: 24, height: 24)
                     Text("Login with Apple")
+                        .fontWeight(.semibold)
                 }
                 .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+        }
+        .alert("Connection Error", isPresented: $showError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(error?.localizedDescription ?? "Unknown error occurred")
         }
         .navigationDestination(isPresented: $shouldNavigateToVerificationView) {
             VerifyEmailView(email: email)
@@ -98,6 +108,7 @@ struct OAuthView: View {
                 .environmentObject(appRootManager)
         }
         .padding()
+        .navigationTitle("OAuth + Passkey")
     }
 }
 
