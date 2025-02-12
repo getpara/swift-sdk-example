@@ -50,32 +50,45 @@ struct OAuthView: View {
             Button {
                 login(provider: .google)
             } label: {
-                Text("Login with Google")
-                    .frame(maxWidth: .infinity)
+                HStack(spacing: 15) {
+                    Image(.google)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text("Login with Google")
+                }
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+            .tint(.primary)
             
             
             Button {
                 login(provider: .discord)
             } label: {
-                Text("Login with Discord")
-                    .frame(maxWidth: .infinity)
+                HStack(spacing: 15) {
+                    Image(.discord)
+                        .resizable()
+                        .frame(width: 24, height: 20)
+                    Text("Login with Discord")
+                }
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+            .tint(Color(uiColor: UIColor(rgb: 0x5865F2)))
             
             Button {
                 login(provider: .apple)
             } label: {
-                Text("Login with Apple")
-                    .frame(maxWidth: .infinity)
+                HStack(spacing: 15) {
+                    Image(.apple)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text("Login with Apple")
+                }
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
         }
-        .padding()
         .navigationDestination(isPresented: $shouldNavigateToVerificationView) {
             VerifyEmailView(email: email)
                 .environmentObject(paraManager)
