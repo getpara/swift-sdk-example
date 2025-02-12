@@ -23,7 +23,7 @@ struct OAuthView: View {
     private func login(provider: OAuthProvider) {
         Task {
             do {
-                let email = try await paraManager.oAuthConnect(provider: provider, deeplinkUrl: "com.usecapsule.example.swift", webAuthenticationSession: webAuthenticationSession)
+                let email = try await paraManager.oAuthConnect(provider: provider, webAuthenticationSession: webAuthenticationSession)
                 handleLogin(email: email)
             } catch {
                 print("Something went wrong")
