@@ -46,9 +46,31 @@ struct WalletsView: View {
                 }
             }
             .navigationTitle("Wallets")
-            .toolbar { Button("Create") {
-                showSelectCreateWalletTypeView = true
-            }}
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        Task {
+                            do {
+                                let wallets = try await paraManager.fetchWallets()
+                                // Update the published wallets property
+                                await MainActor.run {
+                                    paraManager.wallets = wallets
+                                }
+                            } catch {
+                                // If needed, you can add error handling or show an alert
+                                print("Failed to refresh wallets: \(error)")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Create") {
+                        showSelectCreateWalletTypeView = true
+                    }
+                }
+            }
             .confirmationDialog("Wallet Type", isPresented: $showSelectCreateWalletTypeView) {
                 Button("EVM") {
                     createWallet(type: .evm)
