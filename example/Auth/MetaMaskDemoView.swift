@@ -18,7 +18,7 @@ struct MetaMaskDemoView: View {
         VStack(spacing: 24) {
             if let account = metaMaskConnector.accounts.first {
                 Text(account)
-                    .font(.system(.body, design: .monospaced))
+                    .font(.system(.callout, design: .monospaced))
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
@@ -70,15 +70,16 @@ struct MetaMaskDemoView: View {
         defer { isLoading = false }
         
         do {
-            let valueInWei = Web3Core.Utilities.parseToBigUInt("0.001", units: .ether)
-            let gasLimit = Web3Core.Utilities.parseToBigUInt("100000", units: .wei)
+            let valueInWei = Web3Core.Utilities.parseToBigUInt("0.001", units: .ether)!
+            let gasLimit = Web3Core.Utilities.parseToBigUInt("100000", units: .wei)!
             
-            let transaction: [String: String] = [
-                "from": account,
-                "to": "0x13158486860B81Dee9e43Dd0391e61c2F82B577F",
-                "value": "0x" + String(valueInWei!, radix: 16), // Convert to hex string
-                "gasLimit": "0x" + String(gasLimit!, radix: 16)
-            ]
+            // Create an EVMTransaction using the convenience initializer
+            let transaction = EVMTransaction(
+                to: "0x13158486860B81Dee9e43Dd0391e61c2F82B577F",
+                value: valueInWei,
+                gasLimit: gasLimit
+            )
+            
             let txHash = try await metaMaskConnector.sendTransaction(transaction, account: account)
             alert = ("Success", "Transaction sent: \(txHash)")
         } catch {
