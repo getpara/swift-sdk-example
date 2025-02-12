@@ -52,4 +52,4 @@ struct ParaConfig {
         ProcessInfo.processInfo.environment["PARA_RPC_URL"] ?? 
             "https://sepolia.infura.io/v3/961364684c7346c080994baab1469ea8"
     }
-} 
+}
