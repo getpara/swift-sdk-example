@@ -136,8 +136,8 @@ struct PhoneAuthView: View {
                         let userExists = try await paraManager.checkIfUserExistsByPhone(phoneNumber: phoneNumber.replacingOccurrences(of: " ", with: ""), countryCode: countryCode)
                         
                         if userExists {
-                            errorMessage = "User already exists. Please log in with passkey."
-                            isLoading = false
+                            try await paraManager.login(authorizationController: authorizationController, authInfo: PhoneAuthInfo(phone: phoneNumber.replacingOccurrences(of: " ", with: ""), countryCode: countryCode))
+                            appRootManager.currentRoot = .home
                             return
                         }
                         
@@ -167,7 +167,7 @@ struct PhoneAuthView: View {
             
             Button {
                 Task.init {
-                    try await paraManager.login(authorizationController: authorizationController)
+                    try await paraManager.login(authorizationController: authorizationController, authInfo: nil)
                     appRootManager.currentRoot = .home
                 }
             } label: {
