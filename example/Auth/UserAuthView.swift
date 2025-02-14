@@ -31,6 +31,14 @@ struct UserAuthView: View {
                     )
                 }
                 
+                NavigationLink(destination: OAuthView()) {
+                    AuthTypeView(
+                        image: Image(systemName: "xmark.triangle.circle.square"),
+                        title: "OAuth + Passkey",
+                        description: "Use different OAuth providers to create or sign in with a passkey"
+                    )
+                }
+                
                 NavigationLink {
                     ExternalWalletAuthView()
                 } label: {
@@ -40,6 +48,8 @@ struct UserAuthView: View {
                         description: "Login as an external wallet."
                     )
                 }
+                
+                
             }
             .navigationTitle("Authentication")
             .listStyle(.insetGrouped)

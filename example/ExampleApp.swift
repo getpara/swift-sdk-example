@@ -30,7 +30,7 @@ struct ExampleApp: App {
         let bundleId = Bundle.main.bundleIdentifier ?? ""
         // Create a MetaMask configuration for the connector
         let metaMaskConfig = MetaMaskConfig(appName: "ExampleApp", appId: bundleId, apiVersion: "1.0")
-        let metaMaskConnector = MetaMaskConnector(para: paraManager, appUrl: "https://\(bundleId)", deepLink: bundleId, config: metaMaskConfig)
+        let metaMaskConnector = MetaMaskConnector(para: paraManager, appUrl: "https://\(bundleId)", config: metaMaskConfig)
         _metaMaskConnector = StateObject(wrappedValue: metaMaskConnector)
     }
     

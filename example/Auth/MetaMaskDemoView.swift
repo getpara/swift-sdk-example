@@ -94,7 +94,6 @@ struct MetaMaskDemoView: View {
             .environmentObject(MetaMaskConnector(
                 para: ParaManager(environment: .sandbox, apiKey: "preview-key"),
                 appUrl: "https://example.com",
-                deepLink: "example-app",
                 config: MetaMaskConfig(appName: "Example App", appId: "example-app")
             ))
     }
