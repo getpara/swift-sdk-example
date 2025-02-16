@@ -13,6 +13,8 @@ struct ExternalWalletAuthView: View {
     @EnvironmentObject private var appRootManager: AppRootManager
     @EnvironmentObject private var metaMaskConnector: MetaMaskConnector
     
+    @Environment(\.authorizationController) private var authorizationController
+    
     @State private var isConnecting = false
     @State private var error: Error?
     @State private var showError = false
@@ -61,7 +63,20 @@ struct ExternalWalletAuthView: View {
         
         Task {
             do {
-                try await metaMaskConnector.connect()
+                let res = try await metaMaskConnector.connect()
+                let userExists = res["userExists"] as! Bool
+                let userId = res["userId"] as! String
+                let signatureVerificationMessage = res["signatureVerificationMessage"] as! String
+                
+                if !userExists {
+                    let signedMessage = try await metaMaskConnector.signMessage(signatureVerificationMessage, account: metaMaskConnector.accounts.first!)
+                    let biometricsId = try await paraManager.verifyExternalWallet(signedMessage: signedMessage)
+                    try await paraManager.generatePasskey(identifier: metaMaskConnector.accounts.first!, biometricsId: biometricsId, authorizationController: authorizationController)
+                } else {
+                    try await paraManager.login(authorizationController: authorizationController, authInfo: metaMaskConnector.authInfo)
+                    print("Logged In")
+                }
+                
                 showMetaMask = true
             } catch {
                 self.error = error
