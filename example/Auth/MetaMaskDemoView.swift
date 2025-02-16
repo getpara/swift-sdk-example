@@ -11,6 +11,8 @@ import Web3Core
 
 struct MetaMaskDemoView: View {
     @EnvironmentObject private var metaMaskConnector: MetaMaskConnector
+    @EnvironmentObject private var paraManager: ParaManager
+    
     @State private var isLoading = false
     @State private var alert: (title: String, message: String)?
     
@@ -37,6 +39,13 @@ struct MetaMaskDemoView: View {
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
             .tint(.orange)
+            
+            Button("Export Session") {
+                Task { await exportSession() }
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(.orange)
         }
         .padding()
         .navigationTitle("MetaMask Wallet")
@@ -48,6 +57,15 @@ struct MetaMaskDemoView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(alert?.message ?? "")
+        }
+    }
+    
+    private func exportSession() async {
+        do {
+            let exportedSession = try await paraManager.exportSession()
+            alert = ("Success", "Exported Session: \(exportedSession)")
+        } catch {
+            alert = ("Error", error.localizedDescription)
         }
     }
     
@@ -96,5 +114,6 @@ struct MetaMaskDemoView: View {
                 appUrl: "https://example.com",
                 config: MetaMaskConfig(appName: "Example App", appId: "example-app")
             ))
+            .environmentObject(ParaManager(environment: .sandbox, apiKey: "preview-key"))
     }
 }

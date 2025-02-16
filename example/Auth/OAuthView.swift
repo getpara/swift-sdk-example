@@ -56,8 +56,9 @@ struct OAuthView: View {
                     Image(.google)
                         .resizable()
                         .frame(width: 24, height: 24)
-                    Text("Login with Google")
+                    Text("Continue with Google")
                         .fontWeight(.semibold)
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -73,8 +74,9 @@ struct OAuthView: View {
                     Image(.discord)
                         .resizable()
                         .frame(width: 24, height: 20)
-                    Text("Login with Discord")
+                    Text("Continue with Discord")
                         .fontWeight(.semibold)
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -89,13 +91,48 @@ struct OAuthView: View {
                     Image(.apple)
                         .resizable()
                         .frame(width: 24, height: 24)
-                    Text("Login with Apple")
+                    Text("Continue with Apple")
                         .fontWeight(.semibold)
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
+            
+            Button {
+                login(provider: .twitter)
+            } label: {
+                HStack(spacing: 15) {
+                    Image(.x)
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text("Continue with X")
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(Color(uiColor: UIColor(rgb: 0xFF1DA1F2)))
+            
+            Button {
+                login(provider: .facebook)
+            } label: {
+                HStack(spacing: 15) {
+                    Image(.discord)
+                        .resizable()
+                        .frame(width: 24, height: 20)
+                    Text("Continue with Facebook")
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .tint(Color(uiColor: UIColor(rgb: 0x5865F2)))
         }
         .alert("Connection Error", isPresented: $showError) {
             Button("OK", role: .cancel) { }
