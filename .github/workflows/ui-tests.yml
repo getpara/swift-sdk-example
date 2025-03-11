@@ -1,0 +1,36 @@
+name: UI Tests
+
+on:
+  repository_dispatch:
+    types: [run_ui_tests]
+  # Also allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Set up environment variables
+      run: |
+        echo "PARA_API_KEY=${{ secrets.PARA_API_KEY }}" >> $GITHUB_ENV
+        echo "PARA_ENVIRONMENT=sandbox" >> $GITHUB_ENV
+        echo "RPC_URL=${{ secrets.RPC_URL }}" >> $GITHUB_ENV
+        
+    - name: Install dependencies
+      run: |
+        xcodebuild -resolvePackageDependencies
+        
+    - name: Run UI Tests
+      run: |
+        xcodebuild test \
+          -scheme Example \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          -only-testing:ExampleUITests 
